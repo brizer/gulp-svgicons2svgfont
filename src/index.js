@@ -1,12 +1,12 @@
 'use strict';
 
-const SVGIcon2SVGFontStream = require('svgicons2svgfont');
+const SVGIcon2SVGFontStream = require('svgicons2svgfont2');
 const gutil = require('gulp-util');
 const Stream = require('readable-stream');
 const path = require('path');
 const plexer = require('plexer');
-const fileSorter = require('svgicons2svgfont/src/filesorter');
-const defaultMetadataProvider = require('svgicons2svgfont/src/metadata');
+const fileSorter = require('svgicons2svgfont2/src/filesorter');
+const defaultMetadataProvider = require('svgicons2svgfont2/src/metadata');
 
 module.exports = (options) => {
   let filesBuffer = [];
@@ -24,18 +24,18 @@ module.exports = (options) => {
 
   if(options.appendUnicode) {
     throw new gutil.PluginError(
-      'svgicons2svgfont',
+      'svgicons2svgfont2',
       'The "appendUnicode" option were renamed "prependUnicode".' +
-      ' See https://github.com/nfroidure/gulp-svgicons2svgfont/issues/33'
+      ' See https://github.com/nfroidure/gulp-svgicons2svgfont2/issues/33'
     );
   }
 
   if(!options.fontName) {
-    throw new gutil.PluginError('svgicons2svgfont', 'Missing options.fontName');
+    throw new gutil.PluginError('svgicons2svgfont2', 'Missing options.fontName');
   }
 
   options.log = options.log || function() {
-    gutil.log(...['gulp-svgicons2svgfont:'].concat(
+    gutil.log(...['gulp-svgicons2svgfont2:'].concat(
       [].slice.call(arguments, 0).concat()));
   };
 
@@ -55,7 +55,7 @@ module.exports = (options) => {
   };
 
   options.error = options.error || function() {
-    stream.emit('error', new gutil.PluginError('svgicons2svgfont',
+    stream.emit('error', new gutil.PluginError('svgicons2svgfont2',
       [].slice.call(arguments, 0).concat()));
   };
 
